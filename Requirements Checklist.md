@@ -2,3 +2,8 @@
 - [x] Creating basic outline for SDLC
 - [x] Having idea/design in place
 - [x] Talking with client about app and approval
+- [x] Completed algorithm 
+- [x] Completing pseudocode
+- [ ] Completed UML Diagram
+- [ ] Confirm with client one last time
+- [ ] Start coding
