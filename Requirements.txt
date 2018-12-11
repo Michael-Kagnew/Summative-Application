@@ -1,0 +1,4 @@
+ [x] Deciding on app or comptuer sofwatre (use of android studio or not)
+- [x] Creating basic outline for SDLC
+- [x] Having idea/design in place
+- [x] Talking with client about app and approval
