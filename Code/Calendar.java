@@ -16,6 +16,7 @@ import java.awt.BorderLayout;
 
 
 public class Calendar extends JFrame {
+ //Only can be accessed by subclasses, so that not to be used by others
    protected Calendar()
     {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
