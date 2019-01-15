@@ -1,0 +1,33 @@
+Pseudocode:
+Import Date;
+Create JFrame "Calendar"
+ Get CurrentMonth{
+	String [] []month=date.month;
+}
+  Show user the current month's calendar
+   Highlight today's date
+   if there is a event today
+     show notification that there is an event today with the event description
+    If user clicks on a date
+     show the date's schedule
+     if user clicks on "add event" button{
+      close calendar screen
+      open schedulePlanner screen
+}
+
+      if user presses "create event" {
+       if user doesn't specify event name{
+        ask user for the name
+       }
+       if user doesn't specify time{
+        StartTime = 0; 
+        EndTime = 0;
+       }
+       Create file:
+Name = name of the event
+	contents:
+	 description of the event
+	 start time of the event
+	 end time of the event
+}
+       
