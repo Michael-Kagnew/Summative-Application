@@ -6,6 +6,9 @@ import javax.swing.*;
 import javax.swing.table.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.*;
 
 public class Calendar{
@@ -18,33 +21,39 @@ public class Calendar{
 	static DefaultTableModel mCalendarTb; //Table model
 	static JScrollPane sCalendarTb; //The scrollpane
 	static JPanel pnlCalendar;
+        static JPanel note;
+        static TextArea area;
+        static JButton but;
 	static int rYear, realMonth, realDay, currYear, currMonth;
 
-	public static void main (String args[]){
+	public static void main (String args[]) throws IOException{
 		//Look and feel
 		try {UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());}
 		catch (ClassNotFoundException e) {}
 		catch (InstantiationException e) {}
 		catch (IllegalAccessException e) {}
 		catch (UnsupportedLookAndFeelException e) {}
-
+                
 		//Prepare frame
 		FMain = new JFrame ("Calendar"); //Create frame
-		FMain.setSize(330, 375); //Set size, 400x400 pizels
+		FMain.setSize(655, 375); //Set size, 400x400 pizels
 		pane = FMain.getContentPane(); //Get content pane
 		pane.setLayout(null); //Apply null layout
 		FMain.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //Close when X is clicked
-
+                FMain.setLocationRelativeTo(null);
+                
 		//Create controls
 		lblMonth = new JLabel ("January");
 		lblYear = new JLabel ("Change year:");
 		cmbYear = new JComboBox();
 		btnPrev = new JButton ("<<");
 		btnNext = new JButton (">>");
+                but = new JButton("Save Note");
 		mCalendarTb = new DefaultTableModel(){public boolean isCellEditable(int rowIndex, int mColIndex){return false;}};
 		CalendarTb = new JTable(mCalendarTb);
 		sCalendarTb = new JScrollPane(CalendarTb);
 		pnlCalendar = new JPanel(null);
+                area = new TextArea(readFile("src/calendar/userStr.txt"));
 
 		//Set border
 		pnlCalendar.setBorder(BorderFactory.createTitledBorder("Calendar"));
@@ -53,11 +62,12 @@ public class Calendar{
 		btnPrev.addActionListener(new btnPrev_Action());
 		btnNext.addActionListener(new btnNext_Action());
 		cmbYear.addActionListener(new cmbYear_Action());
+                but.addActionListener(new ButtonSave());
 		
 		CalendarControl.CalendarCont();
 		
 		//Make frame visible
-		FMain.setResizable(false);
+		FMain.setResizable(true);
 		FMain.setVisible(true);
 		
 		//Get real month/year
@@ -79,8 +89,7 @@ public class Calendar{
 		//No resize/reorder
 		CalendarTb.getTableHeader().setResizingAllowed(false);
 		CalendarTb.getTableHeader().setReorderingAllowed(false);
-
-		CalendarControl.CellSelection();
+                
 		//Set row/column count
 		CalendarTb.setRowHeight(38);
 		mCalendarTb.setColumnCount(7);
@@ -90,7 +99,6 @@ public class Calendar{
 		for (int i=rYear-100; i<=rYear+100; i++){
 			cmbYear.addItem(String.valueOf(i));
 		}
-		
 		//Refresh calendar
 		refreshCalendar (realMonth, rYear); //Refresh calendar
 	}
@@ -116,7 +124,13 @@ public class Calendar{
 			return this;  
 		}
 	}
-
+        public static void copyFile() throws IOException{
+            FileWriter fw = new FileWriter("src/calendar/userStr.txt");
+            String str;
+            str = area.getText();
+            fw.write(str);
+            fw.close();
+        }
 	static class btnPrev_Action implements ActionListener{
 		public void actionPerformed (ActionEvent e){
 			if (currMonth == 0){ //Back one year
@@ -150,4 +164,24 @@ public class Calendar{
 			}
 		}
 	}
+        static class ButtonSave implements ActionListener{
+        public void actionPerformed(ActionEvent e) {
+            try{
+                copyFile();
+            } catch (IOException em){
+            }
+        }
+        }
+        private static String readFile(String pathname) throws IOException {
+
+        File file = new File(pathname);
+        StringBuilder fileContents = new StringBuilder((int)file.length());        
+
+        try (Scanner scanner = new Scanner(file)) {
+            while(scanner.hasNextLine()) {
+                fileContents.append(scanner.nextLine() + System.lineSeparator());
+            }
+        return fileContents.toString();
+        }
+    }
 }
