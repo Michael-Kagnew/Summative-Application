@@ -22,8 +22,8 @@ public class Calendar{
 	static JScrollPane sCalendarTb; //The scrollpane
 	static JPanel pnlCalendar;
         static JPanel note;
-        static TextArea area;
-        static JButton but;
+        static TextArea noteArea;
+        static JButton saveBut;
 	static int rYear, realMonth, realDay, currYear, currMonth;
 
 	public static void main (String args[]) throws IOException{
@@ -48,12 +48,12 @@ public class Calendar{
 		cmbYear = new JComboBox();
 		btnPrev = new JButton ("<<");
 		btnNext = new JButton (">>");
-                but = new JButton("Save Note");
+                saveBut = new JButton("Save Note");
 		mCalendarTb = new DefaultTableModel(){public boolean isCellEditable(int rowIndex, int mColIndex){return false;}};
 		CalendarTb = new JTable(mCalendarTb);
 		sCalendarTb = new JScrollPane(CalendarTb);
 		pnlCalendar = new JPanel(null);
-                area = new TextArea(readFile("src/calendar/userStr.txt"));
+                noteArea = new TextArea(readFile("src/calendar/userStr.txt"));
 
 		//Set border
 		pnlCalendar.setBorder(BorderFactory.createTitledBorder("Calendar"));
@@ -62,7 +62,7 @@ public class Calendar{
 		btnPrev.addActionListener(new btnPrev_Action());
 		btnNext.addActionListener(new btnNext_Action());
 		cmbYear.addActionListener(new cmbYear_Action());
-                but.addActionListener(new ButtonSave());
+                saveBut.addActionListener(new ButtonSave());
 		
 		CalendarControl.CalendarCont();
 		
@@ -127,7 +127,7 @@ public class Calendar{
         public static void copyFile() throws IOException{
             FileWriter fw = new FileWriter("src/calendar/userStr.txt");
             String str;
-            str = area.getText();
+            str = noteArea.getText();
             fw.write(str);
             fw.close();
         }
