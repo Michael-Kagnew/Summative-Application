@@ -22,8 +22,8 @@ public class CalendarControl extends Calendar {
         pnlCalendar.add(btnPrev);
         pnlCalendar.add(btnNext);
         pnlCalendar.add(sCalendarTb);
-        pnlCalendar.add(but);
-        pnlCalendar.add(area);
+        pnlCalendar.add(saveBut);
+        pnlCalendar.add(noteArea);
 
         //Set bounds
         pnlCalendar.setBounds(0, 0, 650, 335);
@@ -33,18 +33,18 @@ public class CalendarControl extends Calendar {
         btnPrev.setBounds(10, 25, 50, 25);
         btnNext.setBounds(260, 25, 50, 25);
         sCalendarTb.setBounds(10, 50, 300, 250);
-        but.setBounds(330,20, 300,30);
-        area.setBounds(330, 50, 300, 270);
+        saveBut.setBounds(330,20, 300,30);
+        noteArea.setBounds(330, 50, 300, 270);
     }
 
     public static void CellSelection() {
-        //Single cell selection
+        //Single cell selection of today 
         CalendarTb.setColumnSelectionAllowed(true);
         CalendarTb.setRowSelectionAllowed(true);
         CalendarTb.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
     }
-
+        //Refreshes calendar so that changing between months will show new info
     public static void refreshCalendar(int month, int year) {
         //Variables
         String[] months = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
