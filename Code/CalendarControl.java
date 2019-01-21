@@ -22,15 +22,19 @@ public class CalendarControl extends Calendar {
         pnlCalendar.add(btnPrev);
         pnlCalendar.add(btnNext);
         pnlCalendar.add(sCalendarTb);
+        pnlCalendar.add(but);
+        pnlCalendar.add(area);
 
         //Set bounds
-        pnlCalendar.setBounds(0, 0, 320, 335);
+        pnlCalendar.setBounds(0, 0, 650, 335);
         lblMonth.setBounds(160 - lblMonth.getPreferredSize().width / 2, 25, 100, 25);
         lblYear.setBounds(10, 305, 80, 20);
         cmbYear.setBounds(230, 305, 80, 20);
         btnPrev.setBounds(10, 25, 50, 25);
         btnNext.setBounds(260, 25, 50, 25);
         sCalendarTb.setBounds(10, 50, 300, 250);
+        but.setBounds(330,20, 300,30);
+        area.setBounds(330, 50, 300, 270);
     }
 
     public static void CellSelection() {
@@ -70,14 +74,14 @@ public class CalendarControl extends Calendar {
         GregorianCalendar cal = new GregorianCalendar(year, month, 1);
         nod = cal.getActualMaximum(GregorianCalendar.DAY_OF_MONTH);
         som = cal.get(GregorianCalendar.DAY_OF_WEEK);
-
+        
         //Draw calendar
         for (int i = 1; i <= nod; i++) {
             int row = new Integer((i + som - 2) / 7);
             int column = (i + som - 2) % 7;
             mCalendarTb.setValueAt(i, row, column);
         }
-
+        
         //Apply renderers
         CalendarTb.setDefaultRenderer(CalendarTb.getColumnClass(0), new CalendarTbRenderer());
     }
