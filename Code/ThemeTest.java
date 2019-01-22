@@ -9,7 +9,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.*;
-
+//Testing feature, implemented in main calendar class
 public class Calendar{
 	static JLabel lblMonth, lblYear;
 	static JButton btnPrev, btnNext;
