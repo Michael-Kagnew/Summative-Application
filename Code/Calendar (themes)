@@ -133,6 +133,21 @@ public class Calendar{
 				if (Integer.parseInt(value.toString()) == realDay && currMonth == realMonth && currYear == rYear){ //Today
 					setBackground(new Color(255, 140, 0));  
 				}
+				
+				}*/
+                        
+                        /*GREEN THEME 
+			if (column == 0 || column == 6){ //Week-end
+				setBackground(new Color(0,102,0));
+			}
+			else{ //Week
+				setBackground(new Color(0,150,0));
+			}
+			if (value != null){  
+				if (Integer.parseInt(value.toString()) == realDay && currMonth == realMonth && currYear == rYear){ //Today
+					setBackground(new Color(102, 255, 102));  
+				}
+			}*/
 		
                         
                         //ORANGE THEME 
