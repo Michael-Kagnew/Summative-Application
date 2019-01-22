@@ -1,1 +1,15 @@
-Throughout the process of creating this project,
+Throughout the process of creating this project, our team faced quite a few challenges. However, the process of making the project taught us many skills that we will be able to apply in the future. 
+
+Firstly, we all learned how to delegate tasks evenly, while playing at our strengths. Initially, Alex and Michael found many sources of which showed how to program calendar-based applications. At this time, I (Sayma) began the planning of the SDLC process. With the feedback of my team, I created flowcharts, algorithms, UML diagrams and prototypes for the projects we aimed to create. After a short period of time, we were ready to build the code. 
+
+Each one of us were in charge of creating a class. Michael created the Calendar and Calendar panel class where the dates, years, an actual calendar was made. Alex made the notepad class which allowed the user to write change, and savenotes onto the application. I was in charge of the menu class, which would be used as the "homescreen" of the app and allow the user to browse through the features. However, as a team, we decided to not use the menu class as it did not seem absolutely necessary or practical for the app (i.e, it is best if the user can simply just see the calendar and notepad). After this, we edited/helped each other code (e.g, I added colour themes to Michael's calendar code and then Alex made the themes into options ofr the user to choose). There were multiple instances like this where we could work well together and help create a stronger final product. Communication among our team was great. Not only did we work productively in class, but we communicated online too (e.g, text message, phone calls, etc.). 
+
+This project was a learning curve for us as we leanred new things. We leaned about the features assocaited with calendars (e.g, timeframe and such), learned more about I/O files which allow user to save text information, and learned more about the Java Swing GUI feautures. In sum, learning these new skills would help us later on in our programming careers when working on even larger products.
+
+We do think that the final product could be used as it meets the needs of our customer. However, if time allowed, we would definitely love to add even more feautures, like more buttons, in order the further enhance the uality of the application. However, we ebelieve that our product is good overall and consists of numerous features that surpass the user's needs (e.g, multiple coloured theme options). 
+
+Regarding steps for improvement, I think our project management was great and we worked well as a team. However, if there was one thing we could slighly improve, it would be to use time more effectively over the winter break. Over those two weeks, more work could have been done in order to create an even stronger product. However, since it was the holidays, we had busy schedules and could not always work on the project.
+
+In brief, the project ws done welland I had a collaborative, respectful, and hardworking team to create this application with. We have learned many things from this experience and hope to use these newly gained skills in the future. 
+
+
