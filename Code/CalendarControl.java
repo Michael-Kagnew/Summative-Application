@@ -22,29 +22,31 @@ public class CalendarControl extends Calendar {
         pnlCalendar.add(btnPrev);
         pnlCalendar.add(btnNext);
         pnlCalendar.add(sCalendarTb);
-        pnlCalendar.add(saveBut);
-        pnlCalendar.add(noteArea);
+        pnlCalendar.add(but);
+        pnlCalendar.add(area);
+        pnlCalendar.add(cmbTheme);
 
-        //Set bounds for calendar 
+        //Set bounds
         pnlCalendar.setBounds(0, 0, 650, 335);
         lblMonth.setBounds(160 - lblMonth.getPreferredSize().width / 2, 25, 100, 25);
-        lblYear.setBounds(10, 305, 80, 20);
+        lblYear.setBounds(337, 305, 80, 20);
         cmbYear.setBounds(230, 305, 80, 20);
         btnPrev.setBounds(10, 25, 50, 25);
         btnNext.setBounds(260, 25, 50, 25);
         sCalendarTb.setBounds(10, 50, 300, 250);
-        saveBut.setBounds(330,20, 300,30);
-        noteArea.setBounds(330, 50, 300, 270);
+        but.setBounds(330,20, 300,30);
+        area.setBounds(330, 50, 300, 270);
+        cmbTheme.setBounds(10, 305, 80, 20);
     }
 
     public static void CellSelection() {
-        //Single cell selection of today 
+        //Single cell selection
         CalendarTb.setColumnSelectionAllowed(true);
         CalendarTb.setRowSelectionAllowed(true);
         CalendarTb.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
     }
-        //Refreshes calendar so that changing between months will show new info
+
     public static void refreshCalendar(int month, int year) {
         //Variables
         String[] months = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
