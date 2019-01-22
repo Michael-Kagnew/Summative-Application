@@ -25,7 +25,7 @@ public class CalendarControl extends Calendar {
         pnlCalendar.add(saveBut);
         pnlCalendar.add(noteArea);
 
-        //Set bounds
+        //Set bounds for calendar 
         pnlCalendar.setBounds(0, 0, 650, 335);
         lblMonth.setBounds(160 - lblMonth.getPreferredSize().width / 2, 25, 100, 25);
         lblYear.setBounds(10, 305, 80, 20);
