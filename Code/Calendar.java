@@ -64,7 +64,7 @@ public class Calendar{
 		pnlCalendar = new JPanel(null);
                 area = new TextArea(readFile("src/calendar/userStr.txt"));
 
-		//Set border for the calendar 
+		//Set border
 		pnlCalendar.setBorder(BorderFactory.createTitledBorder("Calendar"));
 		
 		
@@ -74,7 +74,6 @@ public class Calendar{
                 cmbTheme.addActionListener(new cmbTheme_Action());
                 but.addActionListener(new ButtonSave());
 		
-		//The button placements for prev/next, years, etc
 		CalendarControl.CalendarCont();
 		
 		//Make frame visible
@@ -90,7 +89,7 @@ public class Calendar{
 		currYear = rYear;
 		
 		//Add headers
-		String[] headers = {"SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"}; //All headers
+		String[] headers = {"Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"}; //All headers
 		for (int i=0; i<7; i++){
 			mCalendarTb.addColumn(headers[i]);
 		}
@@ -100,9 +99,6 @@ public class Calendar{
 		//No resize/reorder
 		CalendarTb.getTableHeader().setResizingAllowed(false);
 		CalendarTb.getTableHeader().setReorderingAllowed(false);
-		
-		//What selects the current day
-                CalendarControl.CellSelection();
                 
 		//Set row/column count
 		CalendarTb.setRowHeight(38);
@@ -147,15 +143,15 @@ public class Calendar{
                                 break;
                                 
                             case "Red":
-                                if (column == 0 || column == 6){ //Weekend colours (Sat and Sun)
+                                if (column == 0 || column == 6){ //Week-end
                                         setBackground(new Color(170,99,99));
                                 }
                                 else{ //Week
-                                        setBackground(new Color(229,188,188)); //weekdays (Mon-Fri) 
+                                        setBackground(new Color(229,188,188));
                                 }
                                 if (value != null){  
                                         if (Integer.parseInt(value.toString()) == realDay && currMonth == realMonth && currYear == rYear){ //Today
-                                                setBackground(new Color(225, 77, 77)); //current day  
+                                                setBackground(new Color(225, 77, 77));  
                                         }
                                 }
                                 break;
