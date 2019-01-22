@@ -1,3 +1,9 @@
+/*last edited 1/22/2019
+This code is essentially a schedule planner. It contains a calendar that allows the user 
+to keep track of the date and month. Moreover, they are able to 
+jot down any notes (e.g, reminders) that they need to remember. 
+*/
+
 package calendar;
         
 import static calendar.CalendarControl.refreshCalendar;
@@ -58,7 +64,7 @@ public class Calendar{
 		pnlCalendar = new JPanel(null);
                 area = new TextArea(readFile("src/calendar/userStr.txt"));
 
-		//Set border
+		//Set border for the calendar 
 		pnlCalendar.setBorder(BorderFactory.createTitledBorder("Calendar"));
 		
 		
@@ -84,7 +90,7 @@ public class Calendar{
 		currYear = rYear;
 		
 		//Add headers
-		String[] headers = {"Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"}; //All headers
+		String[] headers = {"SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"}; //All headers
 		for (int i=0; i<7; i++){
 			mCalendarTb.addColumn(headers[i]);
 		}
@@ -141,15 +147,15 @@ public class Calendar{
                                 break;
                                 
                             case "Red":
-                                if (column == 0 || column == 6){ //Week-end
+                                if (column == 0 || column == 6){ //Weekend colours (Sat and Sun)
                                         setBackground(new Color(170,99,99));
                                 }
                                 else{ //Week
-                                        setBackground(new Color(229,188,188));
+                                        setBackground(new Color(229,188,188)); //weekdays (Mon-Fri) 
                                 }
                                 if (value != null){  
                                         if (Integer.parseInt(value.toString()) == realDay && currMonth == realMonth && currYear == rYear){ //Today
-                                                setBackground(new Color(225, 77, 77));  
+                                                setBackground(new Color(225, 77, 77)); //current day  
                                         }
                                 }
                                 break;
