@@ -68,6 +68,7 @@ public class Calendar{
                 cmbTheme.addActionListener(new cmbTheme_Action());
                 but.addActionListener(new ButtonSave());
 		
+		//The button placements for prev/next, years, etc
 		CalendarControl.CalendarCont();
 		
 		//Make frame visible
@@ -93,6 +94,9 @@ public class Calendar{
 		//No resize/reorder
 		CalendarTb.getTableHeader().setResizingAllowed(false);
 		CalendarTb.getTableHeader().setReorderingAllowed(false);
+		
+		//What selects the current day
+                CalendarControl.CellSelection();
                 
 		//Set row/column count
 		CalendarTb.setRowHeight(38);
