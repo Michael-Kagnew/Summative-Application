@@ -2,7 +2,6 @@ package calendar;
         
 import static calendar.CalendarControl.refreshCalendar;
 import javax.swing.*;
-
 import javax.swing.table.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -16,14 +15,17 @@ public class Calendar{
 	static JButton btnPrev, btnNext;
 	static JTable CalendarTb;
 	static JComboBox cmbYear;
+        static JComboBox cmbTheme;
 	static JFrame FMain;
 	static Container pane;
 	static DefaultTableModel mCalendarTb; //Table model
 	static JScrollPane sCalendarTb; //The scrollpane
 	static JPanel pnlCalendar;
         static JPanel note;
-        static TextArea noteArea;
-        static JButton saveBut;
+        static TextArea area;
+        static JButton but;
+        static ImageIcon logoImg;
+        static String themeSelect;
 	static int rYear, realMonth, realDay, currYear, currMonth;
 
 	public static void main (String args[]) throws IOException{
@@ -46,14 +48,15 @@ public class Calendar{
 		lblMonth = new JLabel ("January");
 		lblYear = new JLabel ("Change year:");
 		cmbYear = new JComboBox();
+                cmbTheme = new JComboBox();
 		btnPrev = new JButton ("<<");
 		btnNext = new JButton (">>");
-                saveBut = new JButton("Save Note");
+                but = new JButton("Save Note");
 		mCalendarTb = new DefaultTableModel(){public boolean isCellEditable(int rowIndex, int mColIndex){return false;}};
 		CalendarTb = new JTable(mCalendarTb);
 		sCalendarTb = new JScrollPane(CalendarTb);
 		pnlCalendar = new JPanel(null);
-                noteArea = new TextArea(readFile("src/calendar/userStr.txt"));
+                area = new TextArea(readFile("src/calendar/userStr.txt"));
 
 		//Set border
 		pnlCalendar.setBorder(BorderFactory.createTitledBorder("Calendar"));
@@ -62,12 +65,13 @@ public class Calendar{
 		btnPrev.addActionListener(new btnPrev_Action());
 		btnNext.addActionListener(new btnNext_Action());
 		cmbYear.addActionListener(new cmbYear_Action());
-                saveBut.addActionListener(new ButtonSave());
+                cmbTheme.addActionListener(new cmbTheme_Action());
+                but.addActionListener(new ButtonSave());
 		
 		CalendarControl.CalendarCont();
 		
 		//Make frame visible
-		FMain.setResizable(true);
+		FMain.setResizable(false);
 		FMain.setVisible(true);
 		
 		//Get real month/year
@@ -99,7 +103,16 @@ public class Calendar{
 		for (int i=rYear-100; i<=rYear+100; i++){
 			cmbYear.addItem(String.valueOf(i));
 		}
-		//Refresh calendar
+                
+                String[] Themes = {"Blue", "Red", "Green", "Orange"};
+                for(int i=0;i<4;i++){
+                    cmbTheme.addItem(Themes[i]);
+                }
+                
+                logoImg = new ImageIcon("/src/calendar/logo.png");
+                FMain.setIconImage(logoImg.getImage());
+		
+                //Refresh calendar
 		refreshCalendar (realMonth, rYear); //Refresh calendar
 	}
 	
@@ -108,17 +121,63 @@ public class Calendar{
 	static class CalendarTbRenderer extends DefaultTableCellRenderer{
 		public Component getTableCellRendererComponent (JTable table, Object value, boolean selected, boolean focused, int row, int column){
 			super.getTableCellRendererComponent(table, value, selected, focused, row, column);
-			if (column == 0 || column == 6){ //Week-end
-				setBackground(new Color(255, 220, 220));
-			}
-			else{ //Week
-				setBackground(new Color(255, 255, 255));
-			}
-			if (value != null){
-				if (Integer.parseInt(value.toString()) == realDay && currMonth == realMonth && currYear == rYear){ //Today
-					setBackground(new Color(220, 220, 255));
-				}
-			}
+                        switch(themeSelect){
+                            case "Blue":
+                                if (column == 0 || column == 6){ //Week-end
+                                        setBackground(new Color(173,215,246));
+                                }
+                                else{ //Week
+                                        setBackground(new Color(169,255,247));
+                                }
+                                if (value != null){  
+                                        if (Integer.parseInt(value.toString()) == realDay && currMonth == realMonth && currYear == rYear){ //Today
+                                                setBackground(new Color(108, 190, 237));  
+                                        }
+                                }
+                                break;
+                                
+                            case "Red":
+                                if (column == 0 || column == 6){ //Week-end
+                                        setBackground(new Color(170,99,99));
+                                }
+                                else{ //Week
+                                        setBackground(new Color(229,188,188));
+                                }
+                                if (value != null){  
+                                        if (Integer.parseInt(value.toString()) == realDay && currMonth == realMonth && currYear == rYear){ //Today
+                                                setBackground(new Color(225, 77, 77));  
+                                        }
+                                }
+                                break;
+                                
+                            case "Green":
+                                if (column == 0 || column == 6){ //Week-end
+                                        setBackground(new Color(62,214,115));
+                                }
+                                else{ //Week
+                                        setBackground(new Color(113,247,159));
+                                }
+                                if (value != null){  
+                                        if (Integer.parseInt(value.toString()) == realDay && currMonth == realMonth && currYear == rYear){ //Today
+                                                setBackground(new Color(31,137,68));  
+                                        }
+                                }
+                                break;
+                                
+                            case "Orange":
+                                if (column == 0 || column == 6){ //Week-end
+                                        setBackground(new Color(246,213,126));
+                                }
+                                else{ //Week
+                                        setBackground(new Color(252,246,237));
+                                }
+                                if (value != null){  
+                                        if (Integer.parseInt(value.toString()) == realDay && currMonth == realMonth && currYear == rYear){ //Today
+                                                setBackground(new Color(255,125,50));  
+                                        }
+                                }
+                                break;
+                        }
 			setBorder(null);
 			setForeground(Color.black);
 			return this;  
@@ -127,7 +186,7 @@ public class Calendar{
         public static void copyFile() throws IOException{
             FileWriter fw = new FileWriter("src/calendar/userStr.txt");
             String str;
-            str = noteArea.getText();
+            str = area.getText();
             fw.write(str);
             fw.close();
         }
@@ -164,13 +223,21 @@ public class Calendar{
 			}
 		}
 	}
-        static class ButtonSave implements ActionListener{
-        public void actionPerformed(ActionEvent e) {
-            try{
-                copyFile();
-            } catch (IOException em){
+        static class cmbTheme_Action implements ActionListener{
+            public void actionPerformed (ActionEvent e){
+                if(cmbTheme.getSelectedItem() != null){
+                    themeSelect = cmbTheme.getSelectedItem().toString();
+                    refreshCalendar(currMonth, currYear);
+                }
             }
         }
+        static class ButtonSave implements ActionListener{
+            public void actionPerformed(ActionEvent e) {
+                try{
+                    copyFile();
+                } catch (IOException em){
+                }
+            }
         }
         private static String readFile(String pathname) throws IOException {
 
