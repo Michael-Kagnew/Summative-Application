@@ -1,6 +1,7 @@
+/*TEAM DECISION: THIS CLASS WOULD NOT BE USED AS MOST CALENDAR/SCHEDULING APPLICATIONS DO NOT
+HAVE MENU SCREENS, THEY SIMPLY LEAD TO THE CALENDAR/NOTEPAD (i.e, not an absolutely "necessary" feature)*/
 
-
-/* last edited 1/21/2019
+/* last edited 1/22/2019
 This would be the front screen of the application, allowing the user 
 to see all options of the program (e.g, make note, see calendar)
 used with GUI in Java (swing)
